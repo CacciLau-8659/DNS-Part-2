@@ -42,7 +42,7 @@ def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
     decrypted_data = f.decrypt(encrypted_data) #call the Fernet decrypt method
-    return decrypted_data
+    return decrypted_data.decode('utf-8')
 
 salt = b'Tandon' # Remember it should be a byte-object
 password = "cl8659@nyu.edu"
@@ -93,7 +93,7 @@ dns_records = {
     
     'nyu.edu.':{
         dns.rdatatype.A: '192.168.1.106',
-        dns.rdatatype.TXT: str(encrypted_value, 'utf-8'),
+        dns.rdatatype.TXT: str(encrypted_value),
         dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.NS: 'ns1.nyu.edu.',                                
